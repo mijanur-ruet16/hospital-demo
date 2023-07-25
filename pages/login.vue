@@ -1,55 +1,86 @@
 <script setup>
+const user = useSupabaseUser();
 const email = ref("");
 const password = ref("");
 const errorMsg = ref("");
 
-const login = () => {
-  if (
-    email.value === "" ||
-    !email.value.includes("@") ||
-    password.value === "" ||
-    password.value.length < 6
-  ) {
-    errorMsg.value = "Invalid login credentials";
-  } else {
-    return navigateTo("/hospitals");
+const { auth } = useSupabaseAuthClient();
+const userLogin = async () => {
+  try {
+    const { error } = await auth.signInWithPassword({
+      email: email.value,
+      password: password.value,
+    });
+    email.value = "";
+    password.value = "";
+    if (error) throw error;
+  } catch (error) {
+    errorMsg.value = error.message;
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 3000);
   }
-  email.value = "";
-  password.value = "";
 };
+watchEffect(() => {
+  if (user.value) {
+    navigateTo("/");
+  }
+});
 </script>
-<template>
-  <div class="bg-sky-900">
-    <div class="min-h-screen flex items-center justify-center flex-col">
-      <div class="bg-sky-950 p-8 shadow-lg rounded-md">
-        <h1 class="text-3xl font-black font-bold text-gray-100">
-          Sign in to your account
-        </h1>
 
-        <form @submit.prevent="login" class="flex flex-col gap-3 mt-16">
-          <input
-            type="email"
-            placeholder="Email"
-            v-model="email"
-            class="p-2 rounded bg-charcoal-600"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            v-model="password"
-            class="p-2 rounded bg-charcoal-600 mb-2"
-          />
-          <button
-            type="submit"
-            class="p-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 mb-2"
+<template>
+  <main class="bg-sky-950 min-h-screen">
+    <section
+      class="container mx-auto flex flex-wrap items-center justify-center px-5 py-24 text-gray-400"
+    >
+      <form
+        @submit.prevent="userLogin"
+        class="bg-opacity-50 mt-10 flex w-full flex-col rounded-lg bg-[#242424] p-8 md:mt-0 md:w-1/2 lg:w-2/6"
+      >
+        <h2 class="mb-5 text-lg font-medium text-[#aac8e4]">Login</h2>
+        <div class="relative mb-4">
+          <label for="full-name" class="text-sm leading-7 text-gray-400"
+            >Email</label
           >
-            Log in
-          </button>
-          <p v-if="errorMsg" class="text-red-500 text-center font-bold">
-            {{ errorMsg }}
-          </p>
-        </form>
-      </div>
-    </div>
-  </div>
+          <input
+            v-model="email"
+            type="email"
+            id="email"
+            name="email"
+            class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out focus:border-[#42b883] focus:bg-transparent focus:ring-2 focus:ring-transparent"
+            required
+          />
+        </div>
+        <div class="relative mb-4">
+          <label for="password" class="text-sm leading-7 text-gray-400"
+            >Password</label
+          >
+          <input
+            id="password"
+            v-model="password"
+            name="password"
+            type="password"
+            class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out focus:border-[#42b883] focus:bg-transparent focus:ring-2 focus:ring-transparent"
+            required
+          />
+        </div>
+        <button
+          class="rounded border-0 bg-[#42b883] py-2 px-8 font-sans font-bold text-[#213547] transition-colors duration-500 hover:bg-[#42d392] focus:outline-none"
+        >
+          Submit
+        </button>
+        <span
+          class="text-center text-red-700 text-md mt-5 font-semibold"
+          v-if="errorMsg"
+          >{{ errorMsg }}</span
+        >
+        <p class="mt-3 text-xs">You don't have an account yet?</p>
+        <nuxt-link
+          class="w-fit text-sm text-[#aac8e4] hover:text-[#42b883]"
+          to="/register"
+          >Register</nuxt-link
+        >
+      </form>
+    </section>
+  </main>
 </template>

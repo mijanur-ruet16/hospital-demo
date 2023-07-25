@@ -1,9 +1,17 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center">
-    <h1 class="text-center text-2xl font-bold">List of Hospitals</h1>
+  <div class="min-h-screen flex items-center justify-center bg-sky-950">
+    <NuxtLink
+      to="/hospitals/doctor"
+      class="text-center bg-green-500 px-3 py-1 text-white rounded"
+      >Click to see Available Doctors</NuxtLink
+    >
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+definePageMeta({
+  middleware: "auth",
+});
+</script>
 
 <style scoped></style>
