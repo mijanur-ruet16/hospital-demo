@@ -28,7 +28,7 @@
                 stroke="#52a447"
                 class="w-6 h-6"
                 cursor="pointer"
-                @click="console.log(index)"
+                @click="emit('openModal', index)"
               >
                 <path
                   stroke-linecap="round"
@@ -66,7 +66,7 @@ const props = defineProps({
   doctors: Array,
 });
 
-const emit = defineEmits(["delRow"]);
+const emit = defineEmits(["delRow", "openModal"]);
 </script>
 
 <style scoped></style>

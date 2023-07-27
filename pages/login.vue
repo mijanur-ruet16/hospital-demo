@@ -39,7 +39,7 @@ watchEffect(() => {
       >
         <h2 class="mb-5 text-lg font-medium text-[#aac8e4]">Login</h2>
         <div class="relative mb-4">
-          <label for="full-name" class="text-sm leading-7 text-gray-400"
+          <label for="email" class="text-sm leading-7 text-gray-400"
             >Email</label
           >
           <input
