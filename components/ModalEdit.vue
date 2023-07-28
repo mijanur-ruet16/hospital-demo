@@ -77,27 +77,27 @@
 
 <script setup>
 const emit = defineEmits(["closeModal"]);
-const doctors = useDoctor();
 
 const props = defineProps({
   index: Number,
+  doctors: Array,
 });
 
-const name = ref(doctors.value[props.index].name);
-const email = ref(doctors.value[props.index].email);
-const phone = ref(doctors.value[props.index].phone);
-const address = ref(doctors.value[props.index].address);
+const name = ref(props.doctors[props.index].name);
+const email = ref(props.doctors[props.index].email);
+const phone = ref(props.doctors[props.index].phone);
+const address = ref(props.doctors[props.index].address);
 
 const setD = () => {
-  doctors.value[props.index] = {
+  props.doctors[props.index] = {
     name: name.value,
     email: email.value,
     phone: phone.value,
     address: address.value,
   };
+
   emit("closeModal");
 };
-//console.log(ind);
 </script>
 
 <style scoped></style>

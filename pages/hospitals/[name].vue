@@ -4,7 +4,12 @@
     @delRow="deleteUser"
     @openModal="setModal"
   />
-  <ModalEdit v-if="modal" @closeModal="hideModal" :index="ind" />
+  <ModalEdit
+    v-if="modal"
+    @closeModal="hideModal"
+    :index="ind"
+    :doctors="doctors"
+  />
 </template>
 
 <script setup>
