@@ -1,5 +1,10 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-sky-950">
+  <div
+    class="min-h-screen flex flex-col items-center justify-center bg-sky-950"
+  >
+    <h1 class="text-2xl font-bold text-center text-white mb-10">
+      List of Doctors
+    </h1>
     <table class="w-auto text-slate-100 rounded-md m-4">
       <thead>
         <tr>
@@ -25,9 +30,8 @@
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
-                stroke="#52a447"
-                class="w-6 h-6"
-                cursor="pointer"
+                stroke="#6b7a8a"
+                class="w-6 h-6 cursor-pointer hover:stroke-[#040dc4] hover:scale-110 transition-colors duration-200 ease-in-out"
                 @click="emit('openModal', index)"
               >
                 <path
@@ -43,8 +47,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="#de0a26"
-                class="w-6 h-6"
-                cursor="pointer"
+                class="w-6 h-6 cursor-pointer hover:scale-110 transition-colors duration-200 ease-in-out"
                 @click="emit('delRow', index)"
               >
                 <path

@@ -2,11 +2,17 @@
   <header
     class="sticky top-0 z-40 flex p-4 bg-sky-900 text-white gap-5 justify-between items-center"
   >
-    <NuxtLink to="/" class="text-xl font-mono">Doctor</NuxtLink>
+    <NuxtLink
+      to="/"
+      class="text-xl font-mono hover:text-gray-200 transition-all duration-150"
+      >Doctor</NuxtLink
+    >
 
     <div class="flex space-x-10 mr-2 items-center justify-center">
       <div>
-        <NuxtLink to="/hospitals" class="text-md font-semibold"
+        <NuxtLink
+          to="/hospitals"
+          class="text-md font-semibold hover:text-gray-200 transition-all duration-150"
           >Hospitals</NuxtLink
         >
       </div>

@@ -13,7 +13,21 @@
 </template>
 
 <script setup>
-const doctors = useDoctor();
+const doctors_list = useDoctor();
+const doctors = ref([]);
+
+const route = useRoute();
+
+doctors.value = doctors_list.value.filter(
+  (doctor) => doctor.id === route.params.id
+);
+
+if (doctors.value.length === 0) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "No data Found",
+  });
+}
 
 const deleteUser = (index) => {
   doctors.value.splice(index, 1);
