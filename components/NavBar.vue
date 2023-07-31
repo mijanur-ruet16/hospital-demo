@@ -4,11 +4,18 @@
   >
     <NuxtLink
       to="/"
-      class="text-xl font-mono hover:text-gray-200 transition-all duration-150"
-      >Doctor</NuxtLink
+      class="text-xl font-mono hover:text-gray-200 transition-all duration-150 ml-4"
+      >Doctor's</NuxtLink
     >
 
-    <div class="flex space-x-10 mr-2 items-center justify-center">
+    <div class="flex space-x-10 mr-2 items-center justify-center mr-4">
+      <div>
+        <NuxtLink
+          to="/workplace"
+          class="text-md font-semibold hover:text-gray-200 transition-all duration-150"
+          >Doctors</NuxtLink
+        >
+      </div>
       <div>
         <NuxtLink
           to="/hospitals"
@@ -46,7 +53,7 @@
       <p class="text-base text-gray-400">{{ user.email }}</p>
       <button
         @click="userLogout"
-        class="mt-8 rounded-md bg-[#42b883] px-3 py-1 font-semibold text-[#213547] transition-colors duration-500 hover:bg-[#42d392] focus:outline-none"
+        class="mt-8 rounded-md bg-red-800 px-3 py-1 font-semibold text-gray-100 transition-colors duration-500 hover:bg-red-700 focus:outline-none"
       >
         Logout
       </button>

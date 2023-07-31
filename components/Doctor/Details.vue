@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="min-h-screen flex flex-col items-center justify-center bg-sky-950"
-  >
-    <h1 class="text-2xl font-bold text-center text-white mb-10">
+  <div class="min-h-screen flex flex-col items-center bg-sky-950">
+    <h1 class="text-2xl font-bold text-center text-white mb-10 mt-6">
       List of Doctors
     </h1>
     <table class="w-auto text-slate-100 rounded-md m-4">

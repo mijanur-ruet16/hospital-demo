@@ -4,7 +4,7 @@
     @delRow="deleteUser"
     @openModal="setModal"
   />
-  <ModalEdit
+  <DoctorEdit
     v-if="modal"
     @closeModal="hideModal"
     :index="ind"
@@ -13,13 +13,13 @@
 </template>
 
 <script setup>
-const doctors_list = useDoctor();
+const doctorsList = useDoctor();
 const doctors = ref([]);
 
 const route = useRoute();
 
-doctors.value = doctors_list.value.filter(
-  (doctor) => doctor.id === route.params.id
+doctors.value = doctorsList.value.filter(
+  (doctor) => doctor.id === parseInt(route.params.id)
 );
 
 if (doctors.value.length === 0) {

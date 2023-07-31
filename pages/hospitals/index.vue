@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="bg-sky-950 min-h-screen flex items-center justify-center flex-col"
-  >
-    <h1 class="text-3xl font-bold text-center text-white mb-10">
+  <div class="bg-sky-950 min-h-screen flex items-center flex-col">
+    <h1 class="text-3xl font-bold text-center text-white mb-10 mt-6">
       List of Hospitals
     </h1>
 
@@ -20,7 +18,7 @@
           <tr
             v-for="hospital in hospitals"
             :key="hospital"
-            @click="navigateTo(`hospitals/${hospital.id}`)"
+            @click="navigateTo(`/hospitals/${hospital.id}`)"
             class="cursor-pointer hover:bg-sky-900"
           >
             <td class="py-3 px-6">
