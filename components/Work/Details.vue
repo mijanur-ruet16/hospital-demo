@@ -1,6 +1,6 @@
 <template>
   <Modal>
-    <form @submit.prevent="setData" class="flex flex-col gap-6 mt-6">
+    <form @submit.prevent="setData" class="flex flex-col gap-4 mt-4">
       <div class="flex flex-col">
         <label for="name" class="text-sm leading-7 text-gray-400">Name</label>
         <input
@@ -28,16 +28,29 @@
           >Workplace</label
         >
 
-        <div v-for="(work, i) in workplace" class="mb-3">
-          <div class="flex space-x-4 justify-between">
+        <div v-for="(work, i) in workplace" class="mb-2">
+          <div class="flex space-x-3 justify-between items-center">
             <p class="text-white">
               {{ work }}
             </p>
             <p
-              class="font-bold text-white bg-gary-500 border px-2 rounded text-xl"
-              @click="emit('delHos', i)"
+              class="text-white bg-gary-500 px-2 rounded text-xl"
+              @click="emit('deleteHospital', i)"
             >
-              -
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </p>
           </div>
         </div>
@@ -46,7 +59,7 @@
         >
           Add Workplace
         </p>
-        <div class="flex justify-between space-x-4">
+        <div class="flex justify-between space-x-4 items-center">
           <input
             type="text"
             id="workplace"
@@ -55,10 +68,23 @@
             class="w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out focus:border-[#42b883] focus:bg-transparent focus:ring-2 focus:ring-transparent"
           />
           <p
-            class="px-3 py-2 bg-green-500 text-white rounded-md justify-center"
+            class="px-3 py-3 flex bg-green-500 text-white rounded-md justify-center itmes-center"
             @click="addWorkplace"
           >
-            +
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#fff"
+              class="w-4 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
           </p>
         </div>
         <p v-if="errMsg" class="text-red-700 text-center font-semibold mt-2">
@@ -66,7 +92,7 @@
         </p>
       </div>
 
-      <div class="flex space-x-4 justify-end mt-3">
+      <div class="flex space-x-4 justify-end mt-2">
         <button
           class="border border-gray-500 px-3 py-1 rounded text-gray-400 hover:text-gray-200 transition-all duration-300 focus:outline-none"
           @click="emit('closeWork')"
@@ -85,18 +111,18 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["closeWork", "delHos"]);
+const emit = defineEmits(["closeWork", "deleteHospital"]);
 
 const props = defineProps({
   index: Number,
-  docs: Array,
+  doctorsList: Array,
 });
 
 //console.log(props.docs[props.index].workplace);
 
-const workplace = ref(props.docs[props.index].workplace);
-const name = ref(props.docs[props.index].name);
-const phone = ref(props.docs[props.index].phone);
+const workplace = ref(props.doctorsList[props.index].workplace);
+const name = ref(props.doctorsList[props.index].name);
+const phone = ref(props.doctorsList[props.index].phone);
 
 const workplaceNew = ref("");
 const errMsg = ref(false);
@@ -112,20 +138,13 @@ const addWorkplace = () => {
   errMsg.value = false;
 };
 
-console.log(workplace.value);
-
-/* const worker = ref([]);
-worker.value.push("Hello", "Kitty");
-console.log(worker.value); */
-
 const setData = () => {
-  props.docs[props.index] = {
+  props.doctorsList[props.index] = {
     name: name.value,
     phone: phone.value,
     workplace: workplace.value,
   };
-
-  //props.docs[props.index].workplace = worker.value;
+  console.log(workplace.value);
   emit("closeWork");
 };
 </script>

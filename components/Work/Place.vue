@@ -16,16 +16,16 @@
         </thead>
         <tbody>
           <tr
-            v-for="(doc, index) in docs"
+            v-for="(doctor, index) in doctorsList"
             :key="index"
             class="cursor-pointer hover:bg-sky-900"
           >
             <td class="py-3 px-6">
-              {{ doc.name }}
+              {{ doctor.name }}
             </td>
-            <td class="py-3 px-6">{{ doc.phone }}</td>
+            <td class="py-3 px-6">{{ doctor.phone }}</td>
             <td class="py-3 px-6 space-y-2">
-              <div v-for="work in doc.workplace">
+              <div v-for="work in doctor.workplace">
                 {{ work }}
               </div>
             </td>
@@ -54,7 +54,7 @@
                   stroke-width="1.5"
                   stroke="#de0a26"
                   class="w-6 h-6 cursor-pointer hover:scale-110 transition-colors duration-200 ease-in-out"
-                  @click="emit('delData', index)"
+                  @click="emit('deleteData', index)"
                 >
                   <path
                     stroke-linecap="round"
@@ -73,10 +73,27 @@
 
 <script setup>
 const props = defineProps({
-  docs: Array,
+  doctorsList: Array,
 });
-//console.log(props.docs[1].workplace);
-const emit = defineEmits(["delData", "openWorkModal"]);
+
+const emit = defineEmits(["deleteData", "openWorkModal"]);
+
+const allWorkplace = useHospitalAssignment();
+const hospitals = useHospitals();
+
+const findWorkplace = (id) => {
+  const letWork = allWorkplace.value.filter((doctor) => doctor.id === id);
+
+  let workplace = [];
+  letWork[0].workplaceId.filter((workplaceId) => {
+    hospitals.value.filter((hospital) =>
+      hospital.id === workplaceId ? workplace.push(hospital.name) : ""
+    );
+  });
+  props.doctorsList[id - 1].workplace = workplace;
+};
+
+props.doctorsList.filter((doctor) => findWorkplace(doctor.id));
 </script>
 
 <style scoped></style>

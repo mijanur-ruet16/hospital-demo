@@ -1,38 +1,23 @@
 <template>
-  <WorkPlace :docs="docs" @delData="deleteUser" @openWorkModal="setModal" />
+  <WorkPlace
+    :doctorsList="doctorsList"
+    @deleteData="deleteUser"
+    @openWorkModal="setModal"
+  />
   <WorkDetails
     v-if="modal"
-    :docs="docs"
+    :doctorsList="doctorsList"
     :index="ind"
     @closeWork="hideModal"
-    @delHos="deleteHos"
+    @deleteHospital="deleteHospital"
   />
 </template>
 
 <script setup>
-const docs = ref([
-  {
-    name: "Lionel Messi",
-    phone: "+8801700123456",
-    workplace: ["Square Hospitals", "Popular Hospitals"],
-    workplaceId: 1,
-  },
-  {
-    name: "Sergio Busquets",
-    phone: "+8801700125555",
-    workplace: ["Square Hospitals", "Popular Hospitals", "Labaid Hospitals"],
-    workplaceId: 2,
-  },
-  {
-    name: "Lionel Scaloni",
-    phone: "+8801700123789",
-    workplace: ["BIRDEM Hospital", "Popular Hospitals"],
-    workplaceId: 1,
-  },
-]);
+const doctorsList = useDoctor();
 
 const deleteUser = (index) => {
-  docs.value.splice(index, 1);
+  doctorsList.value.splice(index, 1);
 };
 
 const modal = ref(false);
@@ -47,8 +32,8 @@ const hideModal = () => {
   //window.location.reload(true);
 };
 
-const deleteHos = (i) => {
-  docs.value[ind.value].workplace.splice(i, 1);
+const deleteHospital = (i) => {
+  doctorsList.value[ind.value].workplace.splice(i, 1);
 };
 </script>
 

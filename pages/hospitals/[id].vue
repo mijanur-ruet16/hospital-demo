@@ -13,13 +13,21 @@
 </template>
 
 <script setup>
-const doctorsList = useDoctor();
 const doctors = ref([]);
-
 const route = useRoute();
+const allWorkplace = useHospitalAssignment();
+const doctorsList = useDoctor();
+
+const letPath = allWorkplace.value.filter((d) =>
+  d.workplaceId.find((id) => id === parseInt(route.params.id))
+);
+
+console.log(letPath);
+
+console.log(doctorsList.value.filter((doctor) => doctor.id === letPath[0].id));
 
 doctors.value = doctorsList.value.filter(
-  (doctor) => doctor.id === parseInt(route.params.id)
+  (doctor) => doctor.id === letPath[0].id
 );
 
 if (doctors.value.length === 0) {
@@ -32,9 +40,6 @@ if (doctors.value.length === 0) {
 const deleteUser = (index) => {
   doctors.value.splice(index, 1);
 };
-
-//const user = useSupabaseUser();
-//console.log(user.value.email);
 
 const modal = ref(false);
 const ind = ref(null);
