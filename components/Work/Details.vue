@@ -123,6 +123,7 @@ const props = defineProps({
 const workplace = ref(props.doctorsList[props.index].workplace);
 const name = ref(props.doctorsList[props.index].name);
 const phone = ref(props.doctorsList[props.index].phone);
+const doctorId = ref(props.doctorsList[props.index].doctorId);
 
 const workplaceNew = ref("");
 const errMsg = ref(false);
@@ -143,6 +144,7 @@ const setData = () => {
     name: name.value,
     phone: phone.value,
     workplace: workplace.value,
+    doctorId: doctorId.value,
   };
   console.log(workplace.value);
   emit("closeWork");

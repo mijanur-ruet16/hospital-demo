@@ -1,104 +1,163 @@
 const allWorkplace = ref([
   {
-    id: 1,
-    workplaceId: [1, 2],
+    doctorId: 1,
+    hospitalId: 1,
   },
   {
-    id: 2,
-    workplaceId: [5, 1],
+    doctorId: 1,
+    hospitalId: 2,
   },
   {
-    id: 3,
-    workplaceId: [4, 5],
+    doctorId: 1,
+    hospitalId: 3,
   },
   {
-    id: 4,
-    workplaceId: [4, 5],
+    doctorId: 2,
+    hospitalId: 1,
   },
   {
-    id: 5,
-    workplaceId: [1, 2],
+    doctorId: 2,
+    hospitalId: 2,
   },
   {
-    id: 6,
-    workplaceId: [2],
+    doctorId: 3,
+    hospitalId: 1,
   },
   {
-    id: 7,
-    workplaceId: [4, 5],
+    doctorId: 3,
+    hospitalId: 3,
   },
   {
-    id: 8,
-    workplaceId: [1, 2],
+    doctorId: 4,
+    hospitalId: 2,
   },
   {
-    id: 9,
-    workplaceId: [2, 4],
+    doctorId: 4,
+    hospitalId: 5,
   },
   {
-    id: 10,
-    workplaceId: [1, 2, 3],
-  },
-
-  {
-    id: 11,
-    workplaceId: [1],
+    doctorId: 5,
+    hospitalId: 3,
   },
   {
-    id: 12,
-    workplaceId: [5, 1],
+    doctorId: 5,
+    hospitalId: 4,
   },
   {
-    id: 13,
-    workplaceId: [4, 5],
+    doctorId: 6,
+    hospitalId: 2,
   },
   {
-    id: 14,
-    workplaceId: [4, 5],
+    doctorId: 7,
+    hospitalId: 3,
   },
   {
-    id: 15,
-    workplaceId: [5],
+    doctorId: 8,
+    hospitalId: 1,
   },
   {
-    id: 16,
-    workplaceId: [3, 4],
+    doctorId: 8,
+    hospitalId: 2,
   },
   {
-    id: 17,
-    workplaceId: [4, 5],
+    doctorId: 9,
+    hospitalId: 4,
   },
   {
-    id: 18,
-    workplaceId: [3, 4],
+    doctorId: 9,
+    hospitalId: 5,
   },
   {
-    id: 19,
-    workplaceId: [2, 4],
+    doctorId: 10,
+    hospitalId: 1,
   },
   {
-    id: 20,
-    workplaceId: [1, 3],
+    doctorId: 10,
+    hospitalId: 3,
   },
   {
-    id: 21,
-    workplaceId: [4, 5],
+    doctorId: 11,
+    hospitalId: 5,
   },
   {
-    id: 22,
-    workplaceId: [2, 3],
+    doctorId: 12,
+    hospitalId: 3,
   },
   {
-    id: 23,
-    workplaceId: [1, 5],
+    doctorId: 12,
+    hospitalId: 4,
   },
   {
-    id: 24,
-    workplaceId: [4, 5],
+    doctorId: 13,
+    hospitalId: 1,
   },
   {
-    id: 25,
-    workplaceId: [3, 4],
+    doctorId: 13,
+    hospitalId: 2,
+  },
+  {
+    doctorId: 14,
+    hospitalId: 3,
+  },
+  {
+    doctorId: 15,
+    hospitalId: 4,
+  },
+  {
+    doctorId: 16,
+    hospitalId: 1,
+  },
+  {
+    doctorId: 17,
+    hospitalId: 2,
+  },
+  {
+    doctorId: 18,
+    hospitalId: 3,
+  },
+  {
+    doctorId: 19,
+    hospitalId: 1,
+  },
+  {
+    doctorId: 19,
+    hospitalId: 4,
+  },
+  {
+    doctorId: 20,
+    hospitalId: 2,
+  },
+  {
+    doctorId: 20,
+    hospitalId: 3,
+  },
+  {
+    doctorId: 21,
+    hospitalId: 4,
+  },
+  {
+    doctorId: 22,
+    hospitalId: 2,
+  },
+  {
+    doctorId: 23,
+    hospitalId: 3,
+  },
+  {
+    doctorId: 23,
+    hospitalId: 4,
+  },
+  {
+    doctorId: 24,
+    hospitalId: 2,
+  },
+  {
+    doctorId: 25,
+    hospitalId: 1,
+  },
+  {
+    doctorId: 25,
+    hospitalId: 3,
   },
 ]);
 export const useHospitalAssignment = () => {

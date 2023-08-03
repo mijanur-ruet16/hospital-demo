@@ -25,7 +25,7 @@
             </td>
             <td class="py-3 px-6">{{ doctor.phone }}</td>
             <td class="py-3 px-6 space-y-2">
-              <div v-for="work in doctor.workplace">
+              <div v-for="work in doctor.workplace" :key="work">
                 {{ work }}
               </div>
             </td>
@@ -82,18 +82,24 @@ const allWorkplace = useHospitalAssignment();
 const hospitals = useHospitals();
 
 const findWorkplace = (id) => {
-  const letWork = allWorkplace.value.filter((doctor) => doctor.id === id);
+  const individualWorkplace = allWorkplace.value.filter(
+    (doctor) => doctor.doctorId === id
+  );
 
   let workplace = [];
-  letWork[0].workplaceId.filter((workplaceId) => {
+  individualWorkplace.filter((work) => {
     hospitals.value.filter((hospital) =>
-      hospital.id === workplaceId ? workplace.push(hospital.name) : ""
+      hospital.hospitalId === work.hospitalId
+        ? workplace.push(hospital.name)
+        : ""
     );
   });
-  props.doctorsList[id - 1].workplace = workplace;
-};
 
-props.doctorsList.filter((doctor) => findWorkplace(doctor.id));
+  props.doctorsList.filter((doctor) =>
+    doctor.doctorId === id ? (doctor.workplace = workplace) : ""
+  );
+};
+props.doctorsList.filter((doctor) => findWorkplace(doctor.doctorId));
 </script>
 
 <style scoped></style>
