@@ -28,7 +28,7 @@
           >Workplace</label
         >
 
-        <div v-for="(work, i) in workplace" class="mb-2">
+        <div v-for="(work, i) in workplace" :key="work" class="mb-2">
           <div class="flex space-x-3 justify-between items-center">
             <p class="text-white">
               {{ work }}
@@ -115,20 +115,20 @@ const emit = defineEmits(["closeWork", "deleteHospital"]);
 
 const props = defineProps({
   index: Number,
-  doctorsList: Array,
 });
+const { doctorsList } = storeToRefs(useDoctor());
 
 //console.log(props.docs[props.index].workplace);
 
-const workplace = ref(props.doctorsList[props.index].workplace);
-const name = ref(props.doctorsList[props.index].name);
-const phone = ref(props.doctorsList[props.index].phone);
-const doctorId = ref(props.doctorsList[props.index].doctorId);
+const workplace = ref(doctorsList.value[props.index].workplace);
+const name = ref(doctorsList.value[props.index].name);
+const phone = ref(doctorsList.value[props.index].phone);
+const doctorId = ref(doctorsList.value[props.index].doctorId);
 
 const workplaceNew = ref("");
 const errMsg = ref(false);
 
-const addWorkplace = () => {
+const addWorkplace = computed(() => {
   if (!workplaceNew.value) {
     errMsg.value = true;
     return;
@@ -137,10 +137,10 @@ const addWorkplace = () => {
   workplace.value.push(workplaceNew.value);
   workplaceNew.value = "";
   errMsg.value = false;
-};
+});
 
 const setData = () => {
-  props.doctorsList[props.index] = {
+  doctorsList.value[props.index] = {
     name: name.value,
     phone: phone.value,
     workplace: workplace.value,

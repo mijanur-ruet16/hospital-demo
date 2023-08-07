@@ -1,12 +1,7 @@
 <template>
-  <WorkPlace
-    :doctorsList="doctorsList"
-    @deleteData="deleteUser"
-    @openWorkModal="setModal"
-  />
+  <WorkPlace @deleteData="deleteUser" @openWorkModal="setModal" />
   <WorkDetails
     v-if="modal"
-    :doctorsList="doctorsList"
     :index="ind"
     @closeWork="hideModal"
     @deleteHospital="deleteHospital"
@@ -14,7 +9,7 @@
 </template>
 
 <script setup>
-const doctorsList = useDoctor();
+const { doctorsList } = storeToRefs(useDoctor());
 
 const deleteUser = (index) => {
   doctorsList.value.splice(index, 1);
@@ -29,7 +24,6 @@ const setModal = (index) => {
 };
 const hideModal = () => {
   modal.value = false;
-  //window.location.reload(true);
 };
 
 const deleteHospital = (i) => {

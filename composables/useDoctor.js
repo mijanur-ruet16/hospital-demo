@@ -1,4 +1,4 @@
-const doctorsList = ref([
+/* const doctorsList = ref([
   {
     name: "Lionel Messi",
     email: "messi@gmail.com",
@@ -178,4 +178,4 @@ const doctorsList = ref([
 
 export const useDoctor = () => {
   return doctorsList;
-};
+}; */

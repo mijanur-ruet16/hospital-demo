@@ -72,34 +72,12 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  doctorsList: Array,
-});
+const { doctorsList } = storeToRefs(useDoctor());
+
+const { findWorkplace } = useDoctor();
+doctorsList.value.filter((doctor) => findWorkplace(doctor.doctorId));
 
 const emit = defineEmits(["deleteData", "openWorkModal"]);
-
-const allWorkplace = useHospitalAssignment();
-const hospitals = useHospitals();
-
-const findWorkplace = (id) => {
-  const individualWorkplace = allWorkplace.value.filter(
-    (doctor) => doctor.doctorId === id
-  );
-
-  let workplace = [];
-  individualWorkplace.filter((work) => {
-    hospitals.value.filter((hospital) =>
-      hospital.hospitalId === work.hospitalId
-        ? workplace.push(hospital.name)
-        : ""
-    );
-  });
-
-  props.doctorsList.filter((doctor) =>
-    doctor.doctorId === id ? (doctor.workplace = workplace) : ""
-  );
-};
-props.doctorsList.filter((doctor) => findWorkplace(doctor.doctorId));
 </script>
 
 <style scoped></style>

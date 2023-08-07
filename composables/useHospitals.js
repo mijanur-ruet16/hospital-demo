@@ -1,4 +1,4 @@
-const hospitals = ref([
+/* const hospitals = ref([
   {
     name: "Square Hospitals",
     email: "square@gmail.com",
@@ -39,3 +39,4 @@ const hospitals = ref([
 export const useHospitals = () => {
   return hospitals;
 };
+ */

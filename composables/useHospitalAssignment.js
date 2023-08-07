@@ -1,4 +1,4 @@
-const allWorkplace = ref([
+/* const allWorkplace = ref([
   {
     doctorId: 1,
     hospitalId: 1,
@@ -163,3 +163,4 @@ const allWorkplace = ref([
 export const useHospitalAssignment = () => {
   return allWorkplace;
 };
+ */
