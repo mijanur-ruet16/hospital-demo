@@ -389,7 +389,7 @@ export const useApplicationData = defineStore("application_data", () => {
           : ""
       );
     });
-    doctorsList.value.find((doctor) =>
+    doctorsList.value.forEach((doctor) =>
       doctor.doctorId === id ? (doctor.workplace = workplace) : ""
     );
   };
