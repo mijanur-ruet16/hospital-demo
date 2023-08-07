@@ -382,14 +382,14 @@ export const useApplicationData = defineStore("application_data", () => {
     );
 
     let workplace = [];
-    individualWorkplace.filter((work) => {
-      hospitals.value.filter((hospital) =>
+    individualWorkplace.forEach((work) => {
+      hospitals.value.forEach((hospital) =>
         hospital.hospitalId === work.hospitalId
           ? workplace.push(hospital.name)
           : ""
       );
     });
-    doctorsList.value.filter((doctor) =>
+    doctorsList.value.find((doctor) =>
       doctor.doctorId === id ? (doctor.workplace = workplace) : ""
     );
   };
