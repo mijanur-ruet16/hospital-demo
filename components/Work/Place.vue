@@ -72,9 +72,9 @@
 </template>
 
 <script setup>
-const { doctorsList } = storeToRefs(useDoctor());
+const { doctorsList } = storeToRefs(useApplicationData());
 
-const { findWorkplace } = useDoctor();
+const { findWorkplace } = useApplicationData();
 doctorsList.value.filter((doctor) => findWorkplace(doctor.doctorId));
 
 const emit = defineEmits(["deleteData", "openWorkModal"]);

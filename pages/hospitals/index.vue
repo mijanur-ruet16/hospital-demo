@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-const { hospitals } = storeToRefs(useHospitals());
+const { hospitals } = storeToRefs(useApplicationData());
 
 definePageMeta({
   middleware: "auth",

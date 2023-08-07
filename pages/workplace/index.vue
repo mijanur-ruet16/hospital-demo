@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-const { doctorsList } = storeToRefs(useDoctor());
+const { doctorsList } = storeToRefs(useApplicationData());
 
 const deleteUser = (index) => {
   doctorsList.value.splice(index, 1);

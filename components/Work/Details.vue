@@ -116,7 +116,7 @@ const emit = defineEmits(["closeWork", "deleteHospital"]);
 const props = defineProps({
   index: Number,
 });
-const { doctorsList } = storeToRefs(useDoctor());
+const { doctorsList } = storeToRefs(useApplicationData());
 
 //console.log(props.docs[props.index].workplace);
 
